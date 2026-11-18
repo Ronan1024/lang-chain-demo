@@ -77,7 +77,7 @@ if not DEEP_SEEK_API_KEY:
 # 不同模型提供商可能具有额外的专属参数，
 # 具体参数应查看对应的 LangChain Integrations 文档。
 
-deep_seek_llm_by_class = ChatDeepSeek(
+deepseek_llm_by_class = ChatDeepSeek(
 
     # 模型名称
     model=MODEL_NAME,
@@ -114,7 +114,7 @@ deep_seek_llm_by_class = ChatDeepSeek(
 # init_chat_model() 不会自动安装模型集成包，
 # 使用 DeepSeek 仍需安装 langchain-deepseek。
 
-deep_seek_llm = init_chat_model(
+deepseek_llm = init_chat_model(
 
     # 模型名称
     model=MODEL_NAME,
@@ -143,10 +143,10 @@ deep_seek_llm = init_chat_model(
 # 初始化阶段通常不会向 DeepSeek 发送推理请求。
 
 print("Model Class 初始化结果：")
-print(type(deep_seek_llm_by_class).__name__)
+print(type(deepseek_llm_by_class).__name__)
 
 print("\ninit_chat_model 初始化结果：")
-print(type(deep_seek_llm).__name__)
+print(type(deepseek_llm).__name__)
 
 # ============================================================
 # 补充说明
