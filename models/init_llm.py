@@ -1,4 +1,3 @@
-
 """
 LangChain Models - 模型初始化
 
@@ -36,10 +35,10 @@ import os
 
 # LangChain 统一模型初始化接口
 from langchain.chat_models import init_chat_model
+from langchain_core.language_models import BaseChatModel
 
 # DeepSeek 模型集成类
 from langchain_deepseek import ChatDeepSeek
-
 
 # ============================================================
 # 1. 模型基础配置
@@ -63,7 +62,6 @@ if not DEEP_SEEK_API_KEY:
     raise ValueError(
         "未配置 DEEP_SEEK_API_KEY 环境变量"
     )
-
 
 # ============================================================
 # 2. Model Class 方式初始化
@@ -94,7 +92,6 @@ deepseek_llm_by_class = ChatDeepSeek(
     temperature=0.2
 )
 
-
 # ============================================================
 # 3. init_chat_model 方式初始化
 # ============================================================
@@ -114,7 +111,7 @@ deepseek_llm_by_class = ChatDeepSeek(
 # init_chat_model() 不会自动安装模型集成包，
 # 使用 DeepSeek 仍需安装 langchain-deepseek。
 
-deepseek_llm = init_chat_model(
+deepseek_llm: BaseChatModel = init_chat_model(
 
     # 模型名称
     model=MODEL_NAME,
@@ -131,9 +128,13 @@ deepseek_llm = init_chat_model(
 
     # 模型采样温度
     # 参数会传递给底层模型实现
-    temperature=0.2
+    temperature=0.2,
+    extra_body={
+        "thinking": {
+            "type": "disabled"
+        }
+    }
 )
-
 
 # ============================================================
 # 4. 模型初始化结果
