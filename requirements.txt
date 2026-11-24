@@ -1,2 +1,5 @@
 langchain
 langchain-deepseek
+langchain-core
+pydantic
+langchain-classic
